@@ -1,0 +1,101 @@
+#main {
+    background-image: url("../assets/images/Background@2x.png");
+    border: 4px solid rgba(100, 100, 100);
+    width: 800px;
+}
+
+#infos {
+    width: 800px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#infos div {
+    /* https://css-tricks.com/almanac/properties/j/justify-content/ */
+    font-size: 40px;
+    color: rgb(133, 47, 47);
+}
+
+#grille {
+    width: 800px;
+    height: 720px;
+    background-color: rgba(100, 100, 100, 0.5);
+    border: 1px;
+    border: 1px solid #999;
+
+    display: grid;
+    /* 1fr signifie "une fraction de la largeur de la grille", le repeat dit "9 cases" 
+       égales à une fraction (1/9ème) Voir https://css-tricks.com/snippets/css/complete-guide-grid/ */
+    grid-template-columns: repeat(9, 1fr);
+    /* Pour contraindre la hauteur des lignes */
+    grid-auto-rows: 80px;
+}
+
+#grille div {
+    border: 2px solid rgba(100, 100, 100, 0.5);
+    transition: 0.5s all;
+}
+
+#grille div:hover {
+    background-color: yellow;
+}
+
+.grilleDragOver {
+    background-color: pink;
+}
+
+.cookieMatch {
+    animation: matched;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+}
+
+@keyframes matched
+{
+0% {background: pink;}
+10% {background: aqua;}
+}
+
+.cookies {
+    transition: 0.3s all;
+}
+
+.cookies {
+    filter: drop-shadow(2px 2px 2px #222);
+}
+
+.cookies:hover {
+    transform: scale(1.2, 1.2);
+    filter: drop-shadow(4px 4px 4px #222);
+}
+
+.cookies-selected {
+    transform: scale(1.2, 1.2);
+    filter: drop-shadow(4px 4px 4px #222);
+}
+
+.cookie-hide{
+    visibility: hidden;
+}
+
+button{
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #000000;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:500;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background-color: #000000;
+    height: 50px;
+    width: 100px;
+    border-radius: 4px;
+}
+button:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+}
