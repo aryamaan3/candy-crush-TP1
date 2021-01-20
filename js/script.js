@@ -15,15 +15,6 @@ function init() {
   grille.showCookies();
 }
 
-/**
- * appel les fonctions pour voir les matchs lignes et colonnes
- */
-function match(){
-  grille.detecterMatch3Lignes();
-  grille.detecterMatch3Colonnes();
-}
-
-/** appel emptyMatches() */
-function empty(){
-  grille.emptyMatches();
+function find(){
+  grille.findMatches();
 }

@@ -85,14 +85,32 @@ class Cookie {
 
   /**permet de marque un cookie comme match*/
   isMatch(){
-    this.match = true;
-    this.htmlImage.classList.add("cookieMatch");
-    // permet de voir les matchs qui ont été detectés
-    setTimeout(()=>{this.htmlImage.classList.remove("cookieMatch");}, 500);
+      this.match = true;
+      this.htmlImage.classList.add("cookieMatch");
+      // permet de voir les matchs qui ont été detectés
+      setTimeout(() => {
+        this.htmlImage.classList.remove("cookieMatch");
+      }, 500);
   }
 
   /** cache le cookie à partir du css */
   hide(){
     this.htmlImage.classList.add("cookie-hide");
+  }
+
+  unhide(){
+    this.htmlImage.classList.remove("cookie-hide");
+    this.htmlImage.classList.remove("cookieMatch");
+  }
+
+  /**
+   * remplace un cookie par l'autre
+   * @param c1 cookie à changer
+   * @param c2 avec quoi changer
+   */
+  static changeCookie(c1, c2){
+    let swap = c2.htmlImage.src;
+    c1.type = c2.type;
+    c1.htmlImage.src = swap;
   }
 }
