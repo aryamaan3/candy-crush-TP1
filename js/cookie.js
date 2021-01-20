@@ -69,8 +69,7 @@ class Cookie {
     let l2 = cookie2.ligne;
     let c2 = cookie2.colonne;
 
-    const distance = Math.sqrt((c2 - c1) * (c2 - c1) + (l2 - l1) * (l2 - l1));
-    return distance;
+    return Math.sqrt((c2 - c1) * (c2 - c1) + (l2 - l1) * (l2 - l1));
   }
 
   /**renvoie le type */
