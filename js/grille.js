@@ -347,8 +347,7 @@ class Grille {
    * enleve les cookies qui viennent d'êtres matchés par dragndrop ou en selectionnant
    */
   removeMatchedCookiesCol(){
-    this.detecterMatch3Colonnes(); //marque les cookies matchés
-    this.detecterMatch3Lignes();
+    this.findMatches()
     setTimeout(() => {
         let tab = Grille.ligne2Colonne(this.tabCookies); // convertis à un tab de tab de col
         for (let i = 0; i < tab.length; i++){
@@ -380,8 +379,7 @@ class Grille {
 
       }, 500);
     setTimeout(()=>{
-      this.detecterMatch3Colonnes(); //marque les cookies matchés
-      this.detecterMatch3Lignes();
+      this.findMatches()
       if (this.checkIfMatch() === true){
         this.removeMatchedCookiesCol();
       }
