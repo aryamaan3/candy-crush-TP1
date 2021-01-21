@@ -5,7 +5,6 @@
 window.onload = init;
 
 let grille;
-let test = 1;
 
 function init() {
   console.log("Page et ressources prêtes à l'emploi");
@@ -14,6 +13,7 @@ function init() {
 
   grille = new Grille(9, 9);
   grille.showCookies();
+
 }
 
 //https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
@@ -33,4 +33,5 @@ function pad(val) {
     return valString;
   }
 }
+
 

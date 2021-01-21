@@ -118,7 +118,6 @@ class Grille {
           }
         })
     });
-
   }
 
 
@@ -145,6 +144,11 @@ class Grille {
   updateScore(int){
     let score = document.querySelector("#score");
     score.innerHTML = int;
+    if (this.score > 99){
+      this.score = 0;
+      alert("Bien joué!! Vous avez gagné");
+      location.reload();
+    }
   }
 
   /**
