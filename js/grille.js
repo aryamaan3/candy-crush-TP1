@@ -136,6 +136,11 @@ class Grille {
     return res;
   }
 
+  updateScore(int){
+    let score = document.querySelector("#score");
+    score.innerHTML = int;
+  }
+
   /**
    * return tab des indices des cookies matchs
    */
@@ -344,6 +349,8 @@ class Grille {
         for (let j = 0; j < tab[i].length; j++){ //on itere donc sur chaque element de chaque colonne
           if (tab[i][j].getMatch() === true){ //si le cookie est marqué comme match
             let indexInCol = j;
+            this.score ++;
+            this.updateScore(this.score);
             while (indexInCol > 0){ // ramene le cookie matché à l'indice 0 soit tout en haut
               Cookie.swapCookies(tab[i][indexInCol], tab[i][indexInCol - 1]);
               //on change aussi les affichages pour garder le cookie à remplacer caché
