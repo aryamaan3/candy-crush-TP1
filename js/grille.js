@@ -347,7 +347,7 @@ class Grille {
             while (indexInCol > 0){ // ramene le cookie matché à l'indice 0 soit tout en haut
               Cookie.swapCookies(tab[i][indexInCol], tab[i][indexInCol - 1]);
               //on change aussi les affichages pour garder le cookie à remplacer caché
-              tab[i][indexInCol - 1].hide();
+              tab[i][indexInCol - 1].hide(); //on échange seulement les images donc il faut aussi swap les attributs
               tab[i][indexInCol].unhide();
               indexInCol --;
             }
