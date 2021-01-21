@@ -5,6 +5,7 @@
 window.onload = init;
 
 let grille;
+let test = 1;
 
 function init() {
   console.log("Page et ressources prêtes à l'emploi");
@@ -15,6 +16,4 @@ function init() {
   grille.showCookies();
 }
 
-function find(){
-  grille.findMatches();
-}
+

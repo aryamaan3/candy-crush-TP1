@@ -57,8 +57,12 @@ class Grille {
             cookie.deselectionnee();
             
             this.cookiesCliquees[0].deselectionnee();
-            this.removeMatchedCookiesCol();
             this.cookiesCliquees = [0, 0];
+
+            this.detecterMatch3Colonnes(); //marque les cookies matchés
+            this.detecterMatch3Lignes();
+            this.removeMatchedCookiesCol();
+
           }
           // s'il n'y a pas possibilité de swap
           else {
@@ -100,8 +104,10 @@ class Grille {
             this.cookiesCliquees[0].deselectionnee();
             this.cookiesCliquees = [0, 0];
             cookie.htmlImage.classList.remove("grilleDragOver");
-
+            this.detecterMatch3Colonnes(); //marque les cookies matchés
+            this.detecterMatch3Lignes();
             this.removeMatchedCookiesCol();
+
           }
           // s'il n'y a pas possibilité de swap
           else {
@@ -343,39 +349,43 @@ class Grille {
   removeMatchedCookiesCol(){
     this.detecterMatch3Colonnes(); //marque les cookies matchés
     this.detecterMatch3Lignes();
-    while (this.checkIfMatch() === true){ //verifie si il y a des matchs
-      let tab = Grille.ligne2Colonne(this.tabCookies); // convertis à un tab de tab de col
-      for (let i = 0; i < tab.length; i++){
-        for (let j = 0; j < tab[i].length; j++){ //on itere donc sur chaque element de chaque colonne
-          if (tab[i][j].getMatch() === true){ //si le cookie est marqué comme match
-            let indexInCol = j;
-            this.score ++;
-            this.updateScore(this.score);
-            while (indexInCol > 0){ // ramene le cookie matché à l'indice 0 soit tout en haut
-              Cookie.swapCookies(tab[i][indexInCol], tab[i][indexInCol - 1]);
-              //on change aussi les affichages pour garder le cookie à remplacer caché
-              tab[i][indexInCol - 1].hide(); //on échange seulement les images donc il faut aussi swap les attributs
-              tab[i][indexInCol].unhide();
-              indexInCol --;
+    setTimeout(() => {
+        let tab = Grille.ligne2Colonne(this.tabCookies); // convertis à un tab de tab de col
+        for (let i = 0; i < tab.length; i++){
+          for (let j = 0; j < tab[i].length; j++){ //on itere donc sur chaque element de chaque colonne
+            if (tab[i][j].getMatch() === true){ //si le cookie est marqué comme match
+              let indexInCol = j;
+              this.score ++;
+              this.updateScore(this.score);
+              while (indexInCol > 0){ // ramene le cookie matché à l'indice 0 soit tout en haut
+                let wait;
+                wait = Cookie.swapCookies(tab[i][indexInCol], tab[i][indexInCol - 1]);
+                //on change aussi les affichages pour garder le cookie à remplacer caché
+                tab[i][indexInCol - 1].hide(); //on échange seulement les images donc il faut aussi swap les attributs
+                tab[i][indexInCol].unhide();
+                indexInCol --;
+              }
+              let ligne = tab[i][0].ligne;
+              let colonne = tab[i][0].colonne;
+              let type = Math.floor((Math.random()*6));
+              let c2 = new Cookie (type, ligne, colonne);
+              tab[i][0].type = type;
+              tab[i][0].htmlImage.src = c2.htmlImage.src;
+              tab[i][0].unhide();
+              tab[i][0].match = false;
             }
-            let ligne = tab[i][0].ligne;
-            let colonne = tab[i][0].colonne;
-            let type = Math.floor((Math.random()*6));
-            let c2 = new Cookie (type, ligne, colonne);
-            tab[i][0].type = type;
-            tab[i][0].htmlImage.src = c2.htmlImage.src;
-            tab[i][0].match = false;
           }
         }
-        tab[i][0].unhide();
-      }
-      this.removeALLMatches();
+        this.removeALLMatches();
+
+      }, 500);
+    setTimeout(()=>{
       this.detecterMatch3Colonnes(); //marque les cookies matchés
       this.detecterMatch3Lignes();
-    }
-    /*setTimeout(() => {
-      this.removeALLMatches();
-    }, 500);*/
+      if (this.checkIfMatch() === true){
+        this.removeMatchedCookiesCol();
+      }
+    }, 1000)
 
   }
 }

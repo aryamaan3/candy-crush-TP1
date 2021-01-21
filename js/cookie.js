@@ -50,15 +50,19 @@ class Cookie {
   }
 
   static swapCookies(c1, c2) {
-    // On échange leurs images et types
-    let swap1 = [c1.type, c1.htmlImage.src];
-    let swap2 = [c2.type, c2.htmlImage.src];
+    //setTimeout(() =>{
+      // On échange leurs images et types
+      let swap1 = [c1.type, c1.htmlImage.src];
+      let swap2 = [c2.type, c2.htmlImage.src];
 
-    c1.type = swap2[0];
-    c1.htmlImage.src = swap2[1];
-    
-    c2.type = swap1[0];
-    c2.htmlImage.src = swap2[1];
+      c1.type = swap2[0];
+      c1.htmlImage.src = swap2[1];
+
+      c2.type = swap1[0];
+      c2.htmlImage.src = swap2[1];
+      return 1;
+    //}, 200)
+
 
   }
 
@@ -90,6 +94,7 @@ class Cookie {
       setTimeout(() => {
         this.htmlImage.classList.remove("cookieMatch");
       }, 500);
+      this.hide();
   }
 
   /** cache le cookie à partir du css */
